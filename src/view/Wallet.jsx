@@ -68,7 +68,7 @@ function Wallet() {
         </div>
       </div>
       <div>
-        <table className="portfolio-table">
+        <table className="table">
           <thead>
             <tr>
               <th className="title-table">Ativo</th>

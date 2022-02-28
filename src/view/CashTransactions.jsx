@@ -21,7 +21,7 @@ function CashTransactions({paramDate}) {
   return (
     <div >
       <h3 className="centralize">Movimentação de Caixa</h3>
-      <table className="portfolio-table">
+      <table className="table">
         <thead>
           <tr>
               <th className="title-table">Date</th>

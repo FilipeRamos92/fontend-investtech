@@ -15,22 +15,22 @@ function FundItem({ fund }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/security_liquid/${fund.id}/2022-02-28`)
+      .get(`http://localhost:3001/security_liquid/${fund.id}/${dateFormated}`)
       .then((resp) => {
         setSecurityLiquid(resp.data);
       })
       .catch((error) => console.log(error));
-  }, [fund.id]); 
+  }, [fund.id, dateFormated]); 
 
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/cash_liquid/${fund.id}/2022-02-28`)
+      .get(`http://localhost:3001/cash_liquid/${fund.id}/${dateFormated}`)
       .then((resp) => {
         setCashLiquid(resp.data);
       })
       .catch((error) => console.log(error));
-  }, [fund.id]); 
+  }, [fund.id, dateFormated]); 
 
 
   return (

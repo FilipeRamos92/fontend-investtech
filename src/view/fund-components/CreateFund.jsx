@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React from "react";
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from "yup"
@@ -10,13 +10,6 @@ const validationFund = yup.object().shape({
 })
 
 function CreateFund(params) {
-
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, "0");
-    let mm = String(today.getMonth() + 1).padStart(2, "0");
-    let yyyy = String(today.getFullYear());
-    let dateFormated = `${yyyy}-${mm}-${dd}`;
-
 
     const {register, handleSubmit, formState: {errors} } = useForm({
         resolver: yupResolver(validationFund)

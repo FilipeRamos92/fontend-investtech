@@ -13,15 +13,15 @@ function Fund(params) {
       })
       .catch((error) => console.log(error));
   }, []);
-
   
+
 
   // Retornando a listagem de fundos para acesso ao portfólio
   return (
     <div >
       <h1 className="centralize">Portfólio</h1>
       <h3>Fundos Disponíveis</h3>
-      <table className="portfolio-table">
+      <table className="table">
         <thead>
           <tr>
             <th className="title-table">Nome</th>
