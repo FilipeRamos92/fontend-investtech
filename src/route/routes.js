@@ -11,9 +11,9 @@ const routes = () => (
     <Menu />
     <Routes>
       <Route path="/funds" element={<Fund />} />
-      <Route path="/funds/create" element={<CreateFund />} />
+      <Route path="/funds/register" element={<CreateFund />} />
       <Route path="/wallet" element={<Fund />} />
-      <Route path="/funds/wallet/" element={<Wallet />} />
+      <Route path="/wallet/:id/:date" element={<Wallet />} />
       <Route path="/cash_transactions" element={<CashTransactions />} />
     </Routes>
   </BrowserRouter>

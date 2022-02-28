@@ -3,31 +3,30 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CashTransactionItem from "./CashTransactionItem";
 
-function CashTransactions() {
+function CashTransactions({paramDate}) {
   const [cashTransactions, setCashTransactions] = useState([]);
   const paramId = useParams();
 
+  console.log(paramDate);
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/cash_transactions/${paramId.id}/2022-02-17`)
+      .get(`http://localhost:3001/cash_transactions/${paramId.id}/${paramDate}`)
       .then((resp) => {
         setCashTransactions(resp.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [paramId]);
+  }, [paramId, paramDate]);
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>Cash Transactions</h1>
-      <table
-        style={{ textAlign: "center", marginLeft: "auto", marginRight: "auto" }}
-      >
+    <div >
+      <h3 className="centralize">Movimentação de Caixa</h3>
+      <table className="portfolio-table">
         <thead>
           <tr>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Value</th>
+              <th className="title-table">Date</th>
+              <th className="title-table">Description</th>
+              <th className="title-table">Value</th>
           </tr>
         </thead>
         <tbody>

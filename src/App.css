@@ -1,13 +1,92 @@
-.logo {
-    margin-left: 20px;
+/* * {
+  box-sizing: border-box;
+  margin: 0px;
+  -webkit-font-smoothing: antialiased;
+  appearance: none;
+  text-size-adjust: 100%;
+  border: 0px;
+  font-weight: inherit;
+  outline: 0px;
+  padding: 0px;
+  text-rendering: optimizelegibility;
+} */
+
+.centralize {
+
+  text-align: center;
 }
 
-.table {
-    align-items: "center";
-    margin-right: auto;
-    margin-left: auto;
-  }
 
-.centralizar {
+.portfolio-table {
+    width: 98%;
+    margin: 0px auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+h3 {
+    font-size: 22px;
+    margin-left: 50px;
+
+}
+
+.title-table {
+    padding: 10px 50px;
+    margin-right: 20px;
     text-align: center;
+    border: 1px solid;
+    font-weight: 700;
+}
+
+.table-content {
+    text-align: center;
+    border: 1px solid;
+    padding: 20px 0px;
+}
+
+input {
+    
+    margin-left: 10px;
+    border: 1px solid;
+    padding-left: 5px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+label {
+    font-weight: 600;
+}
+
+.page-current-date {
+    font-weight: 600;
+    margin-left: 20px;
+    margin-right: 50px;
+}
+
+.balance {
+    text-align: center;
+    font-weight: 500;
+    font-size: 40px;
+}
+
+.title-register {
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+.input-register {
+    margin-bottom: 10px;
+}
+
+.confirm-button {
+    padding: 10px;
+    border: 1px solid green;
+    border-radius: 10px;
+    background-color: rgb(100, 224, 100);
+    font-weight: 600;
+    color: rgb(4, 56, 4);
+}
+
+.container-confirm-button { 
+    margin-top: 20px;
 }

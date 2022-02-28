@@ -15,7 +15,7 @@ function Menu(params) {
                   <NavDropdown.Item href="/funds/register">Cadastrar Fundo</NavDropdown.Item>
                   <NavDropdown.Item href="/funds/query" >Consultar Fundo</NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="/funds/wallet" >Portfólio</Nav.Link>
+              <Nav.Link href="/wallet" >Portfólio</Nav.Link>
               <NavDropdown title="Transações de Caixa" >
                   <NavDropdown.Item href="/cash_transactions">Consultar Transações de Caixa</NavDropdown.Item>
                   <NavDropdown.Item href="/entries" >Gerenciar Transações de Caixa</NavDropdown.Item>
