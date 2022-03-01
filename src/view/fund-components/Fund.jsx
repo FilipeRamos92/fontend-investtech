@@ -21,12 +21,12 @@ function Fund(params) {
     <div >
       <h1 className="centralize">Portfólio</h1>
       <h3>Fundos Disponíveis</h3>
-      <table className="table">
+      <table>
         <thead>
           <tr>
-            <th className="title-table">Nome</th>
-            <th className="title-table">CNPJ</th>
-            <th className="title-table">Patrimônio Líquido</th>
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Patrimônio Líquido</th>
           </tr>
         </thead>
         <tbody>

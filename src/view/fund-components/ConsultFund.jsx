@@ -4,6 +4,12 @@ import ConsultFundItem from "./ConsultFundItem";
 
 function ConsultFund(params) {
     const [funds, setFunds] = useState([]);
+    const [searchFund, setSearchFund] = useState("");
+    const lowerSearch = searchFund.toLowerCase()
+
+    const filteredFunds = funds.filter((fund) => 
+    fund.name.toLowerCase().includes(lowerSearch) || 
+    fund.cnpj.toLowerCase().includes(lowerSearch))
 
     useEffect(() => {
       axios
@@ -17,17 +23,24 @@ function ConsultFund(params) {
     return (
         <div>
             <h1 className="centralize">Consultar Fundo</h1>
-            <table className="table">
+            <label className="search-name-filter" htmlFor="nameFilter">Buscar:</label>
+            <input 
+            type="text" 
+            value={searchFund} 
+            name="nameFilter" 
+            placeholder="Nome/CNPJ" 
+            onChange={(evt) => setSearchFund(evt.target.value)} />
+            <table>
                 <thead>
                     <tr>
-                        <th className="title-table">Nome</th>
-                        <th className="title-table">CNPJ</th>
-                        <th className="title-table">Data de Criação</th>
-                        <th className="title-table">Actions</th>
+                        <th >Nome</th>
+                        <th >CNPJ</th>
+                        <th >Data de Criação</th>
+                        <th >Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {funds.map((fund, index) => 
+                    {filteredFunds.map((fund, index) => 
                     <ConsultFundItem key={index} fund={fund} fundsList={funds} setFunds={setFunds}/>)}
                 </tbody>
             </table>

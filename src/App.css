@@ -1,4 +1,4 @@
-/* * {
+* {
   box-sizing: border-box;
   margin: 0px;
   -webkit-font-smoothing: antialiased;
@@ -9,84 +9,176 @@
   outline: 0px;
   padding: 0px;
   text-rendering: optimizelegibility;
-} */
+}
+
+body {
+    background-color: rgb(245, 239, 239);
+}
 
 .centralize {
-
   text-align: center;
 }
 
-
-.table {
+table {
     width: 98%;
-    margin: 0px auto;
-    margin-top: 20px;
-    margin-bottom: 40px;
+    margin: 10px auto;
+}
+
+table, th {
+  border-collapse: collapse;
+  border: 1px solid;
+}
+
+th:first-child  {
+    border-top-left-radius: 5px;
+}
+
+th:last-child {
+    border-top-right-radius: 5px;
+}
+
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+td {
+    border: 1px solid rgb(199, 198, 198);
+    background-color: white;
+}
+
+th {
+  background-color: #466ab9;
+  color: white;
+}
+
+h1 {
+    margin: 30px auto; 
 }
 
 h3 {
-    font-size: 22px;
-    margin-left: 50px;
-
+  font-size: 22px;
+  margin-left: 50px;
 }
 
 .title-table {
-    padding: 10px 50px;
-    margin-right: 20px;
-    text-align: center;
-    border: 1px solid;
-    font-weight: 700;
+  padding: 10px 50px;
+  margin-right: 20px;
+  text-align: center;
+  font-weight: 700;
 }
 
 .table-content {
-    text-align: center;
-    border: 1px solid;
-    padding: 20px 0px;
+  text-align: center;
+  padding: 20px 0px;
 }
 
 input {
-    background-color: rgb(240, 231, 231);
-    margin-left: 10px;
-    border: 1px solid;
-    padding-left: 5px;
-    text-align: center;
-    border-radius: 5px;
+  background-color: white;
+  margin-left: 10px;
+  border: 1px solid;
+  padding-left: 5px;
+  text-align: center;
+  border-radius: 5px;
 }
 
 label {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .page-current-date {
-    font-weight: 600;
-    margin-left: 20px;
-    margin-right: 50px;
+  font-weight: 600;
+  margin-left: 20px;
+  margin-right: 50px;
 }
 
 .balance {
-    text-align: center;
-    font-weight: 500;
-    font-size: 40px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 40px;
 }
 
-.title-register {
-    margin-top: 20px;
-    margin-bottom: 100px;
+.title-page {
+  margin-top: 20px;
+  margin-bottom: 100px;
 }
 
 .input-register {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .confirm-button {
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(63, 194, 63);
+  font-weight: 600;
+  color: rgb(252, 252, 252);
+}
+
+.confirm-button:hover {
     padding: 10px;
-    border: 1px solid green;
     border-radius: 10px;
     background-color: rgb(100, 224, 100);
     font-weight: 600;
-    color: rgb(4, 56, 4);
+    color: white;
+  }
+
+
+.container-confirm-button {
+  margin-top: 20px;
 }
 
-.container-confirm-button { 
-    margin-top: 20px;
+.valid-message {
+  margin-top: 10px;
+  color: red;
+}
+
+.btn-delete {
+  margin-left: 10px;
+  padding: 5px 20px;
+  background-color: red;
+  color: white;
+  font-weight: 600;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.btn-delete:hover {
+  margin-left: 10px;
+  padding: 5px 20px;
+  background-color: rgba(201, 6, 6, 0.959);
+  color: white;
+  font-weight: 600;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.btn-edit {
+    margin-left: 10px;
+    padding: 5px 20px;
+    background-color: rgb(255, 115, 0);
+    color: white;
+    font-weight: 600;
+    border: 0px;
+    border-radius: 5px;
+}
+
+.btn-edit:hover {
+    margin-left: 10px;
+    padding: 5px 20px;
+    background-color: rgb(214, 97, 2);
+    color: white;
+    font-weight: 600;
+    border: 0px;
+    border-radius: 5px;
+}
+
+.cash-moviment-title {
+    margin: 40px auto;
+}
+
+.search-name-filter {
+    margin-left: 20px;
 }

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import * as yup from "yup"
@@ -11,22 +11,20 @@ const validationFund = yup.object().shape({
 
 function CreateFund(params) {
 
+    const [validMessage, setValidMessage] = useState("")
     const {register, handleSubmit, formState: {errors} } = useForm({
         resolver: yupResolver(validationFund)
     })
     const addFund = data =>  
     axios.post("http://localhost:3001/funds", data)
-    .then(() => {
-        console.log("Cadastro Realizado!")
-        console.log(data);})
-    .catch(() => {
-        console.log("Erro no Cadastro");
-        console.log(data)})
+    .then(() => {setValidMessage("Cadastro Realizado!")})
+        .catch(() => {
+            console.log("Erro no Cadastro");})
     
 
     return (
         <div>
-            <h1 className="centralize title-register">Cadastrar Fundo</h1>
+            <h1 className="centralize title-page">Cadastrar Fundo</h1>
             <form onSubmit={handleSubmit(addFund)} className="centralize">
                 <div>
                     <label htmlFor="register-name">Nome</label>
@@ -40,6 +38,9 @@ function CreateFund(params) {
                 </div>
                 <div className="container-confirm-button centralize">
                     <button className="confirm-button" type="submit">Cadastrar</button>
+                </div>
+                <div className="valid-message">
+                    <p>{validMessage}</p>
                 </div>
             </form>
         </div>

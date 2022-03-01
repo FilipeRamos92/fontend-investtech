@@ -63,18 +63,18 @@ function Wallet() {
         <h1 className="centralize">Portfólio</h1>
         <div>
           <span className="page-current-date">Data: {paramDate}</span>
-          <label htmlFor="filterDate">Filtrar: </label>
-          <input type="text" name="filterDate" placeholder="aaaa-mm-dd" onKeyDown={handleDate} />
+          <label htmlFor="dateFilter">Filtrar: </label>
+          <input type="text" name="dateFilter" placeholder="aaaa-mm-dd" onKeyDown={handleDate} />
         </div>
       </div>
       <div>
-        <table className="table">
+        <table>
           <thead>
             <tr>
-              <th className="title-table">Ativo</th>
-              <th className="title-table">Quantidade</th>
-              <th className="title-table">Preço</th>
-              <th className="title-table">Financeiro</th>
+              <th>Ativo</th>
+              <th>Quantidade</th>
+              <th>Preço</th>
+              <th>Financeiro</th>
             </tr>
           </thead>
           <tbody>
