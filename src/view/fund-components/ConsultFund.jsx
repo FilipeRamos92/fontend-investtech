@@ -36,7 +36,7 @@ function ConsultFund(params) {
                         <th >Nome</th>
                         <th >CNPJ</th>
                         <th >Data de Criação</th>
-                        <th >Actions</th>
+                        <th >Ações</th>
                     </tr>
                 </thead>
                 <tbody>

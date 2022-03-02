@@ -19,6 +19,10 @@ body {
   text-align: center;
 }
 
+h3 {
+    margin: 40px auto;
+}
+
 table {
     width: 98%;
     margin: 10px auto;
@@ -86,6 +90,8 @@ input {
 
 label {
   font-weight: 600;
+  display: inline-block;
+  width: 80px;
 }
 
 .page-current-date {
@@ -175,10 +181,44 @@ label {
     border-radius: 5px;
 }
 
+.btn-new-transaction {
+  margin-left: 10px;
+  padding: 5px 20px;
+  background-color: rgb(10, 119, 74);
+  color: white;
+  font-weight: 600;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.btn-new-transaction:hover {
+  margin-left: 10px;
+  padding: 5px 20px;
+  background-color: rgb(6, 73, 45);
+  color: white;
+  font-weight: 600;
+  border: 0px;
+  border-radius: 5px;
+}
+
 .cash-moviment-title {
     margin: 40px auto;
 }
 
 .search-name-filter {
     margin-left: 20px;
+}
+
+.container-new-cash-transaction {
+    background-color: rgb(167, 212, 218);
+    padding: 30px 40px;
+    width: 30%;
+    border-radius: 20px;
+    margin: 20px auto;
+}
+
+.title-new-cash-transaction {
+    font-weight: 900;
+    text-align: center;
+    margin: 20px 20px 30px 20px;
 }

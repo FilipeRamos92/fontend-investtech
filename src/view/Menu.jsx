@@ -13,13 +13,10 @@ function Menu(params) {
           <Nav>
               <NavDropdown title="Fundos" >
                   <NavDropdown.Item href="/funds/register">Cadastrar Fundo</NavDropdown.Item>
-                  <NavDropdown.Item href="/funds/query" >Consultar Fundo</NavDropdown.Item>
+                  <NavDropdown.Item href="/funds/query" >Consultar Fundos Cadastrados</NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href="/wallet" >Portfólio</Nav.Link>
-              <NavDropdown title="Transações de Caixa" >
-                  <NavDropdown.Item href="/cash_transactions">Consultar Transações de Caixa</NavDropdown.Item>
-                  <NavDropdown.Item href="/entries" >Gerenciar Transações de Caixa</NavDropdown.Item>
-              </NavDropdown>
+              <Nav.Link href="/cash_transactions" >Gerenciar Caixas</Nav.Link>
               <Nav.Link href="/security_transactions" >Gerenciar Ativos</Nav.Link>
               <Nav.Link href="/blockchain_query" >Blockchain</Nav.Link>
           </Nav>

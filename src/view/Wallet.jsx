@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import SecurityItem from "./SecurityItem";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import CashTransactions from "./CashTransactions";
+import CashTransactionsList from "./cash-transaction-components/CashTransactionsList";
 
 function Wallet() {
   const [portfolio, setPortifolio] = useState([]);
@@ -85,7 +85,8 @@ function Wallet() {
         </table>
       </div>
       <div>
-        <CashTransactions paramDate={paramDate}/>
+        <h3 className="centralize ">Movimentação de Caixa</h3>
+        <CashTransactionsList paramDate={paramDate}/>
       </div>
       <div>
         <p className="centralize balance">Patrimônio Líquido: {balance.toFixed(2)}</p>
