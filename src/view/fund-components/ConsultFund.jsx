@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ConsultFundItem from "./ConsultFundItem";
+import SearchFund from "./SearchFund";
 
 function ConsultFund(params) {
     const [funds, setFunds] = useState([]);
@@ -22,14 +23,8 @@ function ConsultFund(params) {
 
     return (
         <div>
-            <h1 className="centralize">Consultar Fundo</h1>
-            <label className="search-name-filter" htmlFor="nameFilter">Buscar:</label>
-            <input 
-            type="text" 
-            value={searchFund} 
-            name="nameFilter" 
-            placeholder="Nome/CNPJ" 
-            onChange={(evt) => setSearchFund(evt.target.value)} />
+            <h1 className="centralize title-page">Consultar Fundo</h1>
+            <SearchFund searchFund={searchFund} setSearchFund={setSearchFund}/>
             <table>
                 <thead>
                     <tr>

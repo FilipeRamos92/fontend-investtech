@@ -5,8 +5,11 @@ import { Link } from "react-router-dom";
 function CashTransactionItem({ transaction, type, cashTransactions,setCashTransactions }) {
   // Recebendo parâmetro da função mãe para ser renderizado em cada linha da tabela
   function deleteTransaction(id) {
-    axios.delete(`http://localhost:3001/cash_transactions/${id}`)
-    setCashTransactions(cashTransactions.filter(transaction => transaction.id !== id))
+    const resp = window.confirm(`Tem certeza que quer deletar "${transaction.description}"`);
+    if (resp === true) {
+      axios.delete(`http://localhost:3001/cash_transactions/${id}`)
+      setCashTransactions(cashTransactions.filter(transaction => transaction.id !== id))
+    }
   }
 
   return (
@@ -15,7 +18,7 @@ function CashTransactionItem({ transaction, type, cashTransactions,setCashTransa
       <td>{transaction.description}</td>
       <td className="centralize">{transaction.value.toFixed(2)}</td>
       {type === "manage" && <td className="centralize">
-        <button className="btn-edit">Edit</button>
+        <Link to={`/cash_transactions/edit/${transaction.id}`}><button className="btn-edit">Edit</button></Link>
         <button className="btn-delete" onClick={() => deleteTransaction(transaction.id)}>X</button></td>}
     </tr>
   );

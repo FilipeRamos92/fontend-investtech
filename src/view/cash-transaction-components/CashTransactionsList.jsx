@@ -5,22 +5,22 @@ import CashTransactionItem from "./CashTransactionItem";
 
 
 
-function CashTransactionsList({paramDate, type}) {
-  let today = new Date();
-  let dd = String(today.getDate()).padStart(2, "0");
-  let mm = String(today.getMonth() + 1).padStart(2, "0");
-  let yyyy = String(today.getFullYear());
-  let dateFormated = `${yyyy}-${mm}-${dd}`;
+function CashTransactionsList({type}) {
 
   const [cashTransactions, setCashTransactions] = useState([]);
+  const [funds, setFunds] = useState({})
   const paramId = useParams();
-  
-  if (!paramDate) {
-    paramDate = dateFormated
-  }
-  
-  console.log(type);
 
+  const [paramDate, setParamDate] = useState(paramId.date);
+  
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/funds/${paramId.id}`)
+      .then((resp) => {setFunds(resp.data)})
+      .catch((error) => console.log(error));
+  }, [paramId.id]);
+
+  
   useEffect(() => {
     axios
       .get(`http://localhost:3001/cash_transactions/${paramId.id}/${paramDate}`)
@@ -30,11 +30,26 @@ function CashTransactionsList({paramDate, type}) {
       .catch((error) => {
         console.log(error);
       });
-  }, [paramId, paramDate]);
+  }, [paramId, paramDate, setParamDate]);
+
+    function handleDate(e) {
+    if (e.keyCode === 13) {
+      const filtDate = e.target.value;
+      setParamDate(filtDate);
+    }
+  }
 
   return (
     <div >
+      <h4>{funds.name}</h4>
       {type === "manage" && <Link to={`/cash_transactions/transaction/${paramId.id}`}><button className="btn-new-transaction">Nova Transação</button></Link>}
+      <label htmlFor="dateFilter">Filtrar: </label>
+          <input
+            type="text"
+            name="dateFilter"
+            placeholder="aaaa-mm-dd"
+            onKeyDown={handleDate}
+          />
       <table>
         <thead>
           <tr>

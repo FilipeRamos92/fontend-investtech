@@ -1,3 +1,3 @@
-import Wallet from "./Wallet";
+import ConsultWallet from "./ConsultWallet";
 
-export { Wallet };
+export { ConsultWallet };

@@ -11,16 +11,27 @@
   text-rendering: optimizelegibility;
 }
 
+
 body {
     background-color: rgb(245, 239, 239);
 }
 
+.logo {
+  margin-left: 30px;
+}
 .centralize {
   text-align: center;
 }
 
 h3 {
     margin: 40px auto;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+h4 {
+  margin-bottom: 30px;
+  margin-left: 20px;
 }
 
 table {
@@ -81,7 +92,6 @@ h3 {
 
 input {
   background-color: white;
-  margin-left: 10px;
   border: 1px solid;
   padding-left: 5px;
   text-align: center;
@@ -108,7 +118,7 @@ label {
 
 .title-page {
   margin-top: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
 }
 
 .input-register {
@@ -126,15 +136,12 @@ label {
 .confirm-button:hover {
     padding: 10px;
     border-radius: 10px;
-    background-color: rgb(100, 224, 100);
+    background-color: rgb(42, 141, 42);
     font-weight: 600;
     color: white;
   }
 
 
-.container-confirm-button {
-  margin-top: 20px;
-}
 
 .valid-message {
   margin-top: 10px;
@@ -183,6 +190,7 @@ label {
 
 .btn-new-transaction {
   margin-left: 10px;
+  margin-right: 40px;
   padding: 5px 20px;
   background-color: rgb(10, 119, 74);
   color: white;
@@ -218,7 +226,43 @@ label {
 }
 
 .title-new-cash-transaction {
-    font-weight: 900;
+    font-weight: 600;
     text-align: center;
     margin: 20px 20px 30px 20px;
+}
+
+.total-balance {
+  width: 98%;
+  border: 1px solid rgb(199, 198, 198);
+  margin: 0px auto;
+  background-color: #466ab9;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.input-securities {
+  width: 20%;
+  margin-left: 40px;
+}
+
+/* Fund */
+
+.container-register-fund {
+  /* text-align: -webkit-center; */
+  margin-left: 40px;
+  
+}
+.input-register {
+   width: 40%;
+}
+
+.title-register {
+  margin-top: 60px;
+  margin-left: 40px;
+}
+
+.fund-created {
+  margin-top: 20px;
+  width: 80%;
 }

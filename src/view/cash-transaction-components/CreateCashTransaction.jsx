@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
@@ -16,19 +16,21 @@ function CreateCashTransaction(params) {
       fund_id: `${id}`
     }
   })
+
   const [succesMessage, setSuccessMessage] = useState("")
-  
+
   const addCashTransaction = data =>  {
   axios.post("http://localhost:3001/cash_transactions", data)
   .then((resp) => {setSuccessMessage("Lançamento Registrado!")})
   .catch(() => {
     console.log("Erro no Lançamento");})}
+
   
   return (
     <div >
       <h1 className="centralize titulo-page">Gerenciamento de Caixa</h1>
       <div className="container-new-cash-transaction">
-        <h3 className="title-new-cash-transaction">Novo Lançamento</h3>
+        <h3 className="title-new-cash-transaction">Nova Transação</h3>
         <form onSubmit={handleSubmit(addCashTransaction)}>
             <div>
                 <label htmlFor="date">Data:</label>
