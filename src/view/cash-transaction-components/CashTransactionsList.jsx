@@ -5,14 +5,12 @@ import CashTransactionItem from "./CashTransactionItem";
 
 
 
-function CashTransactionsList({type}) {
-
+function CashTransactionsList({ type, paramDate }) {
   const [cashTransactions, setCashTransactions] = useState([]);
+  const [cashLiquid, setCashLiquid] = useState(0);
   const [funds, setFunds] = useState({})
   const paramId = useParams();
 
-  const [paramDate, setParamDate] = useState(paramId.date);
-  
   useEffect(() => {
     axios
       .get(`http://localhost:3001/funds/${paramId.id}`)
@@ -30,26 +28,31 @@ function CashTransactionsList({type}) {
       .catch((error) => {
         console.log(error);
       });
-  }, [paramId, paramDate, setParamDate]);
+  }, [paramId, paramDate]);
 
-    function handleDate(e) {
-    if (e.keyCode === 13) {
-      const filtDate = e.target.value;
-      setParamDate(filtDate);
-    }
-  }
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/cash_liquid/${paramId.id}/${paramDate}`)
+      .then((resp) => {
+        setCashLiquid(resp.data);
+      })
+      .catch((error) => console.log(error));
+  }, [paramId.id, paramDate]);
+
 
   return (
     <div >
-      <h4>{funds.name}</h4>
       {type === "manage" && <Link to={`/cash_transactions/transaction/${paramId.id}`}><button className="btn-new-transaction">Nova Transação</button></Link>}
-      <label htmlFor="dateFilter">Filtrar: </label>
-          <input
-            type="text"
-            name="dateFilter"
-            placeholder="aaaa-mm-dd"
-            onKeyDown={handleDate}
-          />
+      {type !== "portfolio" && <div>
+        <label htmlFor="dateFilter">Filtrar: </label>
+            <input
+              type="text"
+              name="dateFilter"
+              placeholder="aaaa-mm-dd"
+              // onKeyDown={handleDate}
+            />
+      </div>}
+      
       <table>
         <thead>
           <tr>
@@ -71,6 +74,13 @@ function CashTransactionsList({type}) {
             />
           ))}
         </tbody>
+        <tfoot>
+              <tr>
+                <th>Saldo do Caixa</th>
+                <th></th>
+                <th>{(cashLiquid).toFixed(2)}</th>
+              </tr>
+            </tfoot>
       </table>
     </div>
   );

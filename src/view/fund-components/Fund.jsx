@@ -40,10 +40,8 @@ function Fund({type}) {
     }
   }, [type, setBalanceColumnTitle])
 
-  // Retornando a listagem de fundos para acesso ao portfólio
   return (
     <div >
-      <h3>Fundos Disponíveis</h3>
       <SearchFund searchFund={searchFund} setSearchFund={setSearchFund}/>
       <table>
         <thead>

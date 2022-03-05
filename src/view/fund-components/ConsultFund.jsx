@@ -23,7 +23,7 @@ function ConsultFund(params) {
 
     return (
         <div>
-            <h1 className="centralize title-page">Consultar Fundo</h1>
+            <h1 className="consult-fund-title">Consultar Fundo</h1>
             <SearchFund searchFund={searchFund} setSearchFund={setSearchFund}/>
             <table>
                 <thead>

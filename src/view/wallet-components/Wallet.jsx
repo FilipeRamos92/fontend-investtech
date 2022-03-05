@@ -5,7 +5,7 @@ function Wallet(params) {
 
   return (
     <div>
-      <h1 className="centralize title-page">Portfólio</h1>
+      <h1 className="portfolio-title">Portfólio</h1>
       <Fund type={"portfolio"} />
     </div>
   );

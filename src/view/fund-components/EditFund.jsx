@@ -1,6 +1,8 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
+import Alert from "react-bootstrap/Alert";
 import React, { useEffect, useState } from "react";
+import { FloatingLabel, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import * as yup from "yup";
@@ -20,7 +22,7 @@ const validationFund = yup.object().shape({
 function EditFund(params) {
   const { id } = useParams();
 
-  const [validMessage, setValidMessage] = useState("");
+  const [validMessage, setValidMessage] = useState(false);
   const {
     register,
     handleSubmit,
@@ -30,11 +32,11 @@ function EditFund(params) {
     resolver: yupResolver(validationFund),
   });
 
-  const addFund = (data) =>
+  const editFund = (data) =>
     axios
       .put(`http://localhost:3001/funds/${id}`, data)
       .then(() => {
-        setValidMessage("Cadastro Atualizado!");
+        setValidMessage(true);
       })
       .catch(() => {
         console.log("Erro na atualização do Cadastro");
@@ -51,32 +53,43 @@ function EditFund(params) {
 
   return (
     <div>
-      <h1 className="centralize title-page">Editar Cadastro</h1>
-      <form onSubmit={handleSubmit(addFund)} className="centralize">
-        <div>
-          <label htmlFor="register-name">Nome</label>
-          <input
-            className="input-register"
-            name="name"
-            {...register("name")}
-            type="text"
-          />
-          <p>{errors.name?.message}</p>
-        </div>
-        <div>
-          <label htmlFor="register-cnpj">CNPJ</label>
-          <input name="cnpj" {...register("cnpj")} type="text" />
-          <p>{errors.cnpj?.message}</p>
-        </div>
-        <div className="container-confirm-button centralize">
-          <button className="confirm-button" type="submit">
-            Confirmar
-          </button>
-        </div>
-        <div className="valid-message">
-          <p>{validMessage}</p>
-        </div>
-      </form>
+      <h1 className="title-register">Editar Cadastro</h1>
+      <div className="container-register-fund">
+          <Form onSubmit={handleSubmit(editFund)}>
+            <FloatingLabel
+              controlId="floatingInput"
+              label="Nome"
+              className="mb-3 input-register "
+            >
+              <Form.Control
+                name="name"
+                type="text"
+                placeholder="Nome"
+                {...register("name")}
+              />
+            </FloatingLabel>
+            <p>{errors.name?.message}</p>
+            <FloatingLabel label="CNPJ" className="mb-3 input-register">
+              <Form.Control
+                type="text"
+                name="cnpj"
+                placeholder="CNPJ"
+                {...register("cnpj")}
+              />
+            </FloatingLabel>
+            <p>{errors.cnpj?.message}</p>
+            <div>
+              <button className="confirm-button" type="submit">
+                Confirmar
+              </button>
+            </div>
+            <div className="fund-created">
+              {validMessage && (
+                <Alert variant="success">Cadastro Atualizado!</Alert>
+              )}
+            </div>
+          </Form>
+      </div>
     </div>
   );
 }

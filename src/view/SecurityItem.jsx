@@ -2,7 +2,6 @@ import React from "react";
 
 function SecurityItem({ portfolio }) {
   
-  // Recebendo parâmetro da função mãe para ser renderizado em cada linha da tabela
   return (
 
     <tr>

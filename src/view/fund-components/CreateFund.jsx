@@ -53,7 +53,6 @@ function CreateFund(params) {
       <h1 className="title-register">Cadastrar Fundo</h1>
 
       <div className="container-register-fund">
-        <div>
           <Form onSubmit={handleSubmit(addFund)}>
             <FloatingLabel
               controlId="floatingInput"
@@ -88,7 +87,6 @@ function CreateFund(params) {
               )}
             </div>
           </Form>
-        </div>
       </div>
     </div>
   );
