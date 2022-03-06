@@ -143,12 +143,6 @@ label {
   }
 
 
-
-.valid-message {
-  margin-top: 10px;
-  color: red;
-}
-
 .btn-delete {
   margin-left: 10px;
   padding: 5px 20px;
@@ -189,27 +183,6 @@ label {
     border-radius: 5px;
 }
 
-.btn-new-transaction {
-  margin-left: 10px;
-  margin-right: 40px;
-  padding: 5px 20px;
-  background-color: rgb(10, 119, 74);
-  color: white;
-  font-weight: 600;
-  border: 0px;
-  border-radius: 5px;
-}
-
-.btn-new-transaction:hover {
-  margin-left: 10px;
-  padding: 5px 20px;
-  background-color: rgb(6, 73, 45);
-  color: white;
-  font-weight: 600;
-  border: 0px;
-  border-radius: 5px;
-}
-
 .cash-moviment-title {
     margin: 40px auto;
 }
@@ -224,12 +197,6 @@ label {
     width: 30%;
     border-radius: 20px;
     margin: 20px auto;
-}
-
-.title-new-cash-transaction {
-    font-weight: 600;
-    text-align: center;
-    margin: 20px 20px 30px 20px;
 }
 
 .total-balance {
@@ -280,8 +247,6 @@ label {
 
 }
 
-
-
 /* Portfolio */
 
 .portfolio-title {
@@ -305,4 +270,43 @@ label {
   margin-top: 0px;
   margin-bottom: 0px;
   margin-right: 800px;
+}
+
+/* CashTransactions */
+
+.title-new-cash-transaction {
+  text-align: left;
+  margin-left: 0px;
+  margin: 30px 20px 30px 0px;
+  font-weight: 400;
+}
+
+.container-new-transaction {
+  display: flex;
+  align-items: flex-end;
+}
+
+.btn-new-transaction {
+  width: 170px;
+  height: 40px;
+  margin-left: 10px;
+  margin-right: 90px;
+  padding: 5px 20px;
+  background-color: rgb(10, 119, 74);
+  color: white;
+  font-weight: 600;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.btn-new-transaction:hover {
+  width: 170px;
+  height: 40px;
+  margin-left: 10px;
+  padding: 5px 20px;
+  background-color: rgb(6, 73, 45);
+  color: white;
+  font-weight: 600;
+  border: 0px;
+  border-radius: 5px;
 }

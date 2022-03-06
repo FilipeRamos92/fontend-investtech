@@ -21,8 +21,6 @@ function CreateSecurityTransaction(params) {
       })
 
     const [succesMessage, setSuccessMessage] = useState("")
-
-// *****************************************************************
     const [inputValue, setInputValue] = useState("");
     const [selectedValue, setSelectedValue] = useState(null);
 
@@ -31,7 +29,7 @@ function CreateSecurityTransaction(params) {
     };
 
     const handleChange = value => {
-        selectedValue(value);
+        setSelectedValue(value);
     };
 
     const fetchData = async () => {
@@ -44,7 +42,6 @@ function CreateSecurityTransaction(params) {
         return candidate.data.__isNew__ || candidate.label.includes(input);
       };
 
-// *****************************************************************
     const addSecurityTransaction = data =>  {
     axios.post("http://localhost:3001/security_transactions", data)
     .then((resp) => {setSuccessMessage("Lançamento Registrado!")})

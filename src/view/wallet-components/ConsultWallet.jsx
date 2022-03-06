@@ -98,7 +98,7 @@ function ConsultWallet({ type }) {
         {type !== "securityTransaction" && (
           <div>
             <h3 className="">Movimentação de Caixa</h3>
-            <CashTransactionsList type={"portfolio"} paramDate={paramDate} />
+            <CashTransactionsList type={"portfolio"} portfolioDate={paramDate} />
             <div>
               <p className="centralize balance">
                 Patrimônio Líquido: {balance.toFixed(2)}

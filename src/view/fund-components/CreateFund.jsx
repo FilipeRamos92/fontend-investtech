@@ -50,8 +50,7 @@ function CreateFund(params) {
 
   return (
     <div>
-      <h1 className="title-register">Cadastrar Fundo</h1>
-
+        <h1 className="title-register">Cadastrar Fundo</h1>
       <div className="container-register-fund">
           <Form onSubmit={handleSubmit(addFund)}>
             <FloatingLabel
@@ -83,7 +82,7 @@ function CreateFund(params) {
             </div>
             <div className="fund-created">
               {validMessage && (
-                <Alert variant="success">Cadastro Realizado com Sucesso!</Alert>
+                <Alert variant="success">Cadastro Realizado com sucesso!</Alert>
               )}
             </div>
           </Form>
