@@ -12,10 +12,9 @@ let mm = String(today.getMonth() + 1).padStart(2, "0");
 let yyyy = String(today.getFullYear());
 let dateFormated = `${yyyy}-${mm}-${dd}`;
 
-function CashTransactionsList({ type, portfolioDate }) {
+function CashTransactionsList({ type, portfolioDate, portfolioId }) {
   const [cashTransactions, setCashTransactions] = useState([]);
   const [cashLiquid, setCashLiquid] = useState(0);
-  const [funds, setFunds] = useState({});
   const paramId = useParams();
   const [paramDate, setParamDate] = useState(dateFormated);
 
@@ -25,7 +24,6 @@ function CashTransactionsList({ type, portfolioDate }) {
     switch (type) {
       case "portfolio":
         setParamDate(portfolioDate)
-        console.log(paramDate);
         break;
       default:
         break;
@@ -34,23 +32,14 @@ function CashTransactionsList({ type, portfolioDate }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/funds/${paramId.id}`)
-      .then((resp) => {
-        setFunds(resp.data);
-      })
-      .catch((error) => console.log(error));
-  }, [paramId.id]);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/cash_transactions/${paramId.id}/${paramDate}`)
+      .get(`http://localhost:3001/cash_transactions/${type === "portfolio" ? portfolioId : paramId.id}/${paramDate}`)
       .then((resp) => {
         setCashTransactions(resp.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [paramId, paramDate]);
+  }, [type, portfolioId, paramId.id, paramDate]);
 
   useEffect(() => {
     axios

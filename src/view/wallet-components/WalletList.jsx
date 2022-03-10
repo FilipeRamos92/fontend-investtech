@@ -1,21 +1,8 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import SecurityItem from "../SecurityItem";
+import React from "react";
+import SecurityItem from "./SecurityItem";
 
-function WalletList({ portfolio, paramDate}) {
-  const paramId = useParams();
-  const [securityLiquid, setSecurityLiquid] = useState(0);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/security_liquid/${paramId.id}/${paramDate}`)
-      .then((resp) => {
-        setSecurityLiquid(resp.data);
-      })
-      .catch((error) => console.log(error));
-  }, [paramId.id, paramDate]);
-
+function WalletList({ portfolio, paramDate, securityLiquid}) {
+ 
   return (
         <div>
           <table>

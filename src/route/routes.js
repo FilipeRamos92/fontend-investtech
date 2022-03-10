@@ -24,7 +24,7 @@ const routes = () => (
       <Route path="/funds/register" element={<CreateFund />} />
       <Route path="/funds/query" element={<ConsultFund />} />
       <Route path="/funds/edit/:id" element={<EditFund />} />
-      <Route path="/wallet" element={<Wallet />} />
+      <Route path="/wallet" element={<ConsultWallet />} />
       <Route path="/wallet/:id/:date" element={<ConsultWallet />} />
       <Route path="/cash_transactions" element={<CashTransactions />} />
       <Route path="/cash_transactions/transaction/:id" element={<CreateCashTransaction />} />

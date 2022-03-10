@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import CashTransactionsList from "../cash-transaction-components/CashTransactionsList";
 import WalletList from "./WalletList";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ptBR from 'date-fns/locale/pt-BR';
+import Select from "react-select";
 
 let today = new Date();
 let dd = String(today.getDate()).padStart(2, "0");
@@ -15,11 +15,25 @@ let dateFormated = `${yyyy}-${mm}-${dd}`;
 
 function ConsultWallet({ type }) {
   const [portfolio, setPortifolio] = useState([]);
-  const [funds, setFunds] = useState({});
-  const paramId = useParams();
+  // const [funds, setFunds] = useState({});
   const [paramDate, setParamDate] = useState(dateFormated);
 
-  
+  const [funds, setFunds] = useState([]);
+  const [paramId, setParamId] = useState("");
+
+  useEffect(() => {
+    axios
+    .get("http://localhost:3001/funds")
+    .then((resp) => {setFunds(resp.data);})
+    .catch((error) => console.log(error))
+
+  }, [])
+
+  const options=[]
+  funds.forEach(element => {
+    options.push({value: element.id, label: element.name})
+  });
+
   const [securityLiquid, setSecurityLiquid] = useState(0);
   const [cashLiquid, setCashLiquid] = useState(0);
   const balance = cashLiquid + securityLiquid;
@@ -28,16 +42,7 @@ function ConsultWallet({ type }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/funds/${paramId.id}`)
-      .then((resp) => {
-        setFunds(resp.data);
-      })
-      .catch((error) => console.log(error));
-  }, [paramId.id]);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/portfolios/${paramId.id}/${paramDate}`)
+      .get(`http://localhost:3001/portfolios/${paramId}/${paramDate}`)
       .then((resp) => {
         setPortifolio(resp.data);
       })
@@ -48,21 +53,21 @@ function ConsultWallet({ type }) {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/security_liquid/${paramId.id}/${paramDate}`)
+      .get(`http://localhost:3001/security_liquid/${paramId}/${paramDate}`)
       .then((resp) => {
         setSecurityLiquid(resp.data);
       })
       .catch((error) => console.log(error));
-  }, [paramId.id, paramDate]);
+  }, [paramId, paramDate]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/cash_liquid/${paramId.id}/${paramDate}`)
+      .get(`http://localhost:3001/cash_liquid/${paramId}/${paramDate}`)
       .then((resp) => {
         setCashLiquid(resp.data);
       })
       .catch((error) => console.log(error));
-  }, [paramId.id, paramDate]);
+  }, [paramId, paramDate]);
 
   function handleDate(date) {
     let dd = String(date.getDate()).padStart(2, "0");
@@ -75,14 +80,17 @@ function ConsultWallet({ type }) {
 
   return (
     <div>
-      <div>
+      <div className="container">
         <h1 className="portfolio-title">{funds.name}</h1>
-
-          
-        <div className="date-filter">
-          <h3 className="portofolio-security-title">Portfólio</h3>
-          <label className="label-filter-date">Data: </label>
+        <div className="header-filter">
+          <Select
+          className="mb-3 funds-filter"
+          placeholder="Selecione um fundo"
+          options={options}
+          onChange={(e) => setParamId(e.value)}
+          />
           <DatePicker
+            className="form-control  date-filter"
             selected={startDate}
             onChange={(date) => handleDate(date)}
             locale={ptBR}
@@ -92,13 +100,15 @@ function ConsultWallet({ type }) {
 
       </div>
       <div>
-        <WalletList portfolio={portfolio} paramDate={paramDate}/>
+        <WalletList portfolio={portfolio} paramDate={paramDate} securityLiquid={securityLiquid}/>
       </div>
       <div>
         {type !== "securityTransaction" && (
           <div>
             <h3 className="">Movimentação de Caixa</h3>
-            <CashTransactionsList type={"portfolio"} portfolioDate={paramDate} />
+            <CashTransactionsList type={"portfolio"} 
+            portfolioId={paramId}
+            portfolioDate={paramDate} />
             <div>
               <p className="centralize balance">
                 Patrimônio Líquido: {balance.toFixed(2)}
