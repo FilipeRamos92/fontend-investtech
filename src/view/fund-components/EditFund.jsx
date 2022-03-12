@@ -53,8 +53,8 @@ function EditFund(params) {
 
   return (
     <div>
-      <h1 className="title-register">Editar Cadastro</h1>
-      <div className="container-register-fund">
+      <h1 className="fund-title">Editar Cadastro</h1>
+      <div className="container-form">
           <Form onSubmit={handleSubmit(editFund)}>
             <FloatingLabel
               controlId="floatingInput"

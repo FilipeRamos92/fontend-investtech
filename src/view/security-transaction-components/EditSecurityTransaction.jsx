@@ -5,41 +5,20 @@ import { useParams } from "react-router-dom";
 import AsyncSelect from "react-select/async";
 import securities from "../../api/securities";
 import Alert from "react-bootstrap/Alert";
-import Select from "react-select";
+import DatePicker from "react-datepicker";
+import ptBR from "date-fns/locale/pt-BR";
 
 function EditSecurityTransaction(params) {
   const { id } = useParams();
-  const [stateSecurityTransaction, setStateSecurityTransaction] = useState({});
   const [validMessage, setValidMessage] = useState(false);
-  const [transactionDate, setTransactionDate] = useState(stateSecurityTransaction.date);
-  const [transactionOperating, setTransactionOperating] = useState("");
+  const [transactionDate, setTransactionDate] = useState("");
+  const [date, setDate] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
   const [securityId, setSecurityId] = useState(0);
   const [transactionQuantity, setTransactionQuantity] = useState(0);
   const [transactionPrice, setTransactionPrice] = useState("");
-
-  const options = [
-    { value: "Compra", label: "Compra" },
-    { value: "Venda", label: "Venda" },
-  ];
-
-  const handleDateChange = (event) => {
-    setTransactionDate(event.target.value);
-  };
-
-  const handleOperationChange = (event) => {
-    setTransactionOperating(event.value);
-  };
-
-  const handleSecurityChange = (event) => {
-    setSecurityId(event.id);
-  };
-  const handleQuantityChange = (event) => {
-    setTransactionQuantity(Number(event.target.value));
-  };
-
-  const handlePriceChange = (event) => {
-    setTransactionPrice(Number(event.target.value));
-  };
+  const [transactionDescription, setTransactionDescription] = useState("");
+  const [paramId, setParamId] = useState(0);
 
   const fetchData = async () => {
     const result = await securities.get("/securities");
@@ -55,21 +34,33 @@ function EditSecurityTransaction(params) {
     axios
       .get(`http://localhost:3001/security_transactions/${id}`)
       .then((resp) => {
-        setStateSecurityTransaction(resp.data);
-      })
+        setDate(resp.data.date);
+        setTransactionQuantity(Number(resp.data.quantity));
+        setTransactionPrice(Number(resp.data.value));
+        setTransactionDescription(resp.data.description)
+        setParamId(resp.data.fund_id)})
       .catch((error) => console.log(error));
   }, [id]);
 
+  function handleDate(date) {
+    let dd = String(date.getDate()).padStart(2, "0");
+    let mm = String(date.getMonth() + 1).padStart(2, "0");
+    let yyyy = String(date.getFullYear());
+    let dateFormated = `${yyyy}-${mm}-${dd}`;
+    setDate(dateFormated);
+    setStartDate(date);
+  }
+  
   const onSubmit = (event) => {
     event.preventDefault();
 
     const securityTransaction = {
-      date: transactionDate,
-      description: transactionOperating,
+      date: date,
+      description: transactionDescription,
       value: transactionPrice,
       quantity: transactionQuantity,
       security_id: securityId,
-      fund_id: id,
+      fund_id: paramId,
     };
 
     axios
@@ -85,74 +76,72 @@ function EditSecurityTransaction(params) {
   };
 
   return (
-    <div className="container-register-fund">
-      <h1>Gerenciamento de Ativos</h1>
-      <Form onSubmit={onSubmit}>
-        <FloatingLabel
-          controlId="floatingInput"
-          label="Data"
-          className="mb-3 input-register "
-        >
-          <Form.Control
-            name="date"
-            type="text"
-            placeholder="Data"
-            onChange={handleDateChange}
-            value={stateSecurityTransaction.date}
+    <div >
+      <h1 className="fund-title">Gerenciamento de Ativos</h1>
+      <div className="container-form">
+        <Form onSubmit={onSubmit}>
+          {/* <FloatingLabel
+            controlId="floatingInput"
+            label="Data"
+            className="mb-3 input-register"
+          >
+            <Form.Control
+              type="text"
+              onChange={(e) => setTransactionDate(e.target.value)}
+              defaultValue={transactionDate}
+            />
+          </FloatingLabel> */}
+          <DatePicker
+                className="mb-3 form-control"
+                selected={startDate}
+                onChange={(date) => handleDate(date)}
+                locale={ptBR}
+                dateFormat="dd/MM/yyyy"
+              />
+          
+          <AsyncSelect
+            placeholder={"Selecione o Ativo"}
+            className="mb-3 input-register"
+            cacheOptions
+            filterOption={filterOption}
+            loadOptions={fetchData}
+            getOptionLabel={(e) => e.name}
+            getOptionValue={(e) => e.id}
+            onChange={(e) => setSecurityId(e.id)}
           />
-        </FloatingLabel>
-
-        <Select
-          className="mb-3 input-register"
-          placeholder="Operação"
-          options={options}
-          onChange={handleOperationChange}
-          inputValue={stateSecurityTransaction.description}
-        />
-
-        <AsyncSelect
-          placeholder={"Selecione o Ativo"}
-          className="mb-3 input-register"
-          cacheOptions
-          filterOption={filterOption}
-          loadOptions={fetchData}
-          getOptionLabel={(e) => e.name}
-          getOptionValue={(e) => e.id}
-          onChange={handleSecurityChange}
-          defaultValue={stateSecurityTransaction.security_id}
-        />
-
-        <FloatingLabel label="Quantidade" className="mb-3 input-register">
-          <Form.Control
-            type="number"
-            name="quantity"
-            placeholder="Quantidade"
-            onChange={handleQuantityChange}
-            value={stateSecurityTransaction.quantity}
-          />
-        </FloatingLabel>
-
-        <FloatingLabel label="Preço" className="mb-3 input-register">
-          <Form.Control
-            type="text"
-            name="value"
-            placeholder="Preço"
-            onChange={handlePriceChange}
-            value={stateSecurityTransaction.value}
-          />
-        </FloatingLabel>
-
-        <div>
-          <button className="confirm-button" type="submit">
-            Confirmar
-          </button>
-        </div>
-        <div className="fund-created">
-          {validMessage && (
-            <Alert variant="success">Lançamento realizado com sucesso!</Alert>
-          )}
-        </div>
-      </Form>
+          <FloatingLabel label="Quantidade" className="mb-3 input-register">
+            <Form.Control
+              type="number"
+              onChange={(e) => setTransactionQuantity(Number(e.target.value))}
+              value={transactionQuantity}
+            />
+          </FloatingLabel>
+          <FloatingLabel label="Preço" className="mb-3 input-register">
+            <Form.Control
+              type="text"
+              defaultValue={transactionPrice}
+              onChange={(e) => setTransactionPrice(Number(e.target.value))}
+            />
+          </FloatingLabel>
+          <FloatingLabel label="Descrição" className="mb-3 input-register">
+            <Form.Control
+              type="text"
+              onChange={(e) => setTransactionDescription(e.target.value)}
+              value={transactionDescription}
+            />
+          </FloatingLabel>
+          <div>
+            <button className="confirm-button" type="submit">
+              Confirmar
+            </button>
+          </div>
+          <div className="fund-created">
+            {validMessage && (
+              <Alert variant="success">Lançamento realizado com sucesso!</Alert>
+            )}
+          </div>
+        </Form>
+      </div>
     </div>
   );
 }

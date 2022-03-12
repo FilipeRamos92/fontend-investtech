@@ -50,8 +50,8 @@ function CreateFund(params) {
 
   return (
     <div>
-        <h1 className="title-register">Cadastrar Fundo</h1>
-      <div className="container-register-fund">
+        <h1 className="fund-title">Cadastrar Fundo</h1>
+      <div className="container-form">
           <Form onSubmit={handleSubmit(addFund)}>
             <FloatingLabel
               controlId="floatingInput"
@@ -61,7 +61,6 @@ function CreateFund(params) {
               <Form.Control
                 name="name"
                 type="text"
-                placeholder="Nome"
                 {...register("name")}
               />
             </FloatingLabel>
@@ -70,7 +69,6 @@ function CreateFund(params) {
               <Form.Control
                 type="text"
                 name="cnpj"
-                placeholder="CNPJ"
                 {...register("cnpj")}
               />
             </FloatingLabel>

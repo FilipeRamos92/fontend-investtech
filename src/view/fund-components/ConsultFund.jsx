@@ -23,15 +23,15 @@ function ConsultFund(params) {
 
     return (
         <div>
-            <h1 className="consult-fund-title">Consultar Fundo</h1>
-            <SearchFund searchFund={searchFund} setSearchFund={setSearchFund}/>
+            <h1 className="fund-title">Consultar Fundo</h1>
+            <SearchFund setSearchFund={setSearchFund}/>
             <table>
                 <thead>
                     <tr>
-                        <th >Nome</th>
-                        <th >CNPJ</th>
-                        <th >Data de Criação</th>
-                        <th >Ações</th>
+                        <th className="centralize">Nome</th>
+                        <th className="centralize">CNPJ</th>
+                        <th className="centralize">Data de Criação</th>
+                        <th className="centralize">Ações</th>
                     </tr>
                 </thead>
                 <tbody>

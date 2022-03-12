@@ -1,7 +1,7 @@
 import React from "react";
 import SecurityItem from "./SecurityItem";
 
-function WalletList({ portfolio, paramDate, securityLiquid}) {
+function WalletList({ portfolio, securityLiquid}) {
  
   return (
         <div>

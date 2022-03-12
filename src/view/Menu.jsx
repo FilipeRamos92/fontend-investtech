@@ -17,7 +17,10 @@ function Menu(params) {
               </NavDropdown>
               <Nav.Link href="/wallet" >Portfólio</Nav.Link>
               <Nav.Link href="/cash_transactions" >Gerenciar Caixas</Nav.Link>
-              <Nav.Link href="/security_transactions" >Gerenciar Ativos</Nav.Link>
+              <NavDropdown title="Gerenciar Ativos" >
+                  <NavDropdown.Item href="/security_transactions">Transações de Ativos</NavDropdown.Item>
+                  <NavDropdown.Item href="/securities" >Consultar Ativos Cadastrados</NavDropdown.Item>
+              </NavDropdown>
               <Nav.Link href="/blockchain_query" >Blockchain</Nav.Link>
           </Nav>
       </Navbar>

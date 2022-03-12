@@ -1,7 +1,7 @@
 import React from "react";
 import { FormControl, InputGroup } from "react-bootstrap";
 
-function SearchFund({ searchFund, setSearchFund }) {
+function SearchFund({ setSearchFund }) {
   return (
     <div className="find-fund">
       <InputGroup className="mb-3">

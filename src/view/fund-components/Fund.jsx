@@ -42,7 +42,7 @@ function Fund({type}) {
 
   return (
     <div >
-      <SearchFund searchFund={searchFund} setSearchFund={setSearchFund}/>
+      <SearchFund setSearchFund={setSearchFund}/>
       <table>
         <thead>
           <tr>
